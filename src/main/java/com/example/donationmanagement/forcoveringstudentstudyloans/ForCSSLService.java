@@ -28,9 +28,12 @@ public class ForCSSLService {
 
         if (optional.isEmpty()) {
             return "User is not found";
-        } if (optionalCart.isEmpty()) {
+        }
+        if (optionalCart.isEmpty()) {
             return "Cart is not found";
-        } if (optionalCart.get().getValidateYear()-Year.now().getValue() > 10) {
+        }
+        if (optionalCart.get().getValidateYear() - Year.now().getValue() > 10
+                || optionalCart.get().getValidateYear() - Year.now().getValue() < 0) {
             return "Card is expired";
         }
 
