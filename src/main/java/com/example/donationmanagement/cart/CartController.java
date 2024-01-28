@@ -50,4 +50,14 @@ public class CartController implements SimpleCrud<Integer, CartDto> {
     public ResponseDto<Page<CartDto>> pageResponse(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
         return this.cartService.pageResponseSorting(page, size);
     }
+
+    @GetMapping("/getStart")
+    public ResponseDto<Page<CartDto>> getCodeStartsWith(@RequestParam String code, @RequestParam Integer page, @RequestParam Integer size) {
+        return this.cartService.getCodeStartsWith(code, page, size);
+    }
+
+    @GetMapping("/codeStart")
+    public ResponseDto<List<CartDto>> codeStartsWith(@RequestParam String code) {
+        return this.cartService.codeStartsWith(code);
+    }
 }

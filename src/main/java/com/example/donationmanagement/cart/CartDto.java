@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -24,6 +25,8 @@ public class CartDto {
     private Integer userId;
     @NotNull(message = "validateYear cannot be null")
     private Integer validateYear;
+
+    private String date;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

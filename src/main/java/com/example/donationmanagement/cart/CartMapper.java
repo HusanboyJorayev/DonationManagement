@@ -10,6 +10,7 @@ public abstract class CartMapper {
     @Mapping(ignore = true, target = "createdAt")
     @Mapping(ignore = true, target = "updatedAt")
     @Mapping(ignore = true, target = "deletedAt")
+    @Mapping(ignore = true, target = "date")
     public abstract Cart toEntity(CartDto dto);
 
 

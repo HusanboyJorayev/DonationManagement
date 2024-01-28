@@ -3,6 +3,7 @@ package com.example.donationmanagement.cart;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -22,6 +23,7 @@ public class Cart {
     private Double balance;
     private Integer userId;
     private Integer validateYear;
+    private String date;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
