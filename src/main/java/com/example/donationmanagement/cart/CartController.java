@@ -46,8 +46,8 @@ public class CartController implements SimpleCrud<Integer, CartDto> {
         return this.cartService.getAll();
     }
 
-    @GetMapping("/getPage/{page}/{size}")
-    public ResponseDto<Page<CartDto>> pageResponse(@PathVariable Integer page, @PathVariable Integer size) {
-        return this.cartService.pageResponse(page, size);
+    @GetMapping("/getPage")
+    public ResponseDto<Page<CartDto>> pageResponse(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer size) {
+        return this.cartService.pageResponseSorting(page, size);
     }
 }

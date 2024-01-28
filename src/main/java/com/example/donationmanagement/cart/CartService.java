@@ -8,6 +8,7 @@ import com.example.donationmanagement.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -159,8 +160,9 @@ public class CartService implements SimpleCrud<Integer, CartDto> {
         }
     }
 
-    public ResponseDto<Page<CartDto>> pageResponse(Integer page, Integer size) {
-        Page<Cart> cartPage = this.cartRepository.findAllByDeletedAtIsNull(PageRequest.of(page, size));
+    public ResponseDto<Page<CartDto>> pageResponseSorting(Integer page, Integer size) {
+        Page<Cart> cartPage = this.cartRepository.findAllByDeletedAtIsNull(PageRequest.of(page, size,
+                Sort.by("balance").ascending().and(Sort.by("cardCode").descending())));
 
         if (cartPage.isEmpty()) {
             return ResponseDto.<Page<CartDto>>builder()
