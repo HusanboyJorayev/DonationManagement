@@ -4,6 +4,7 @@ import com.example.donationmanagement.dto.ResponseDto;
 import com.example.donationmanagement.dto.SimpleCrud;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,5 +44,10 @@ public class CartController implements SimpleCrud<Integer, CartDto> {
     @GetMapping("/getAll")
     public ResponseDto<List<CartDto>> getAll() {
         return this.cartService.getAll();
+    }
+
+    @GetMapping("/getPage/{page}/{size}")
+    public ResponseDto<Page<CartDto>> pageResponse(@PathVariable Integer page, @PathVariable Integer size) {
+        return this.cartService.pageResponse(page, size);
     }
 }

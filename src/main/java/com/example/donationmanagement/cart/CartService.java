@@ -6,6 +6,8 @@ import com.example.donationmanagement.dto.SimpleCrud;
 import com.example.donationmanagement.user.User;
 import com.example.donationmanagement.user.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -155,5 +157,21 @@ public class CartService implements SimpleCrud<Integer, CartDto> {
                     .message("groups while getting  all")
                     .build();
         }
+    }
+
+    public ResponseDto<Page<CartDto>> pageResponse(Integer page, Integer size) {
+        Page<Cart> cartPage = this.cartRepository.findAllByDeletedAtIsNull(PageRequest.of(page, size));
+
+        if (cartPage.isEmpty()) {
+            return ResponseDto.<Page<CartDto>>builder()
+                    .code(-1)
+                    .message("Carts are not found")
+                    .build();
+        }
+        return ResponseDto.<Page<CartDto>>builder()
+                .success(true)
+                .message("Ok")
+                .data(cartPage.map(this.cartMapper::toDto))
+                .build();
     }
 }

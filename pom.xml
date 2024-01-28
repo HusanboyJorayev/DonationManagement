@@ -130,6 +130,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>DonationManagement-0.0.1-SNAPSHOT.jar</finalName>
     </build>
 
 </project>
